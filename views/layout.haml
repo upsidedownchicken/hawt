@@ -1,0 +1,76 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta{:charset => 'utf-8'}
+    %title hawt: You like to watch, don't you?
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1.0'}
+    %meta{:name => 'description', :content => ''}
+    %meta{:name => 'author', :content => ''}
+
+    <!-- Le styles -->
+    %link{:rel => 'stylesheet', :href => '../assets/css/bootstrap.css'}
+    %style body { padding-top: 60px } /* 60px to make the container go all the way to the bottom of the topbar */
+    %link{:rel => 'stylesheet', :href => '../assets/css/bootstrap-responsive.css'}
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    %script{:src => "//html5shim.googlecode.com/svn/trunk/html5.js"}
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    %script{:src => 'http://code.jquery.com/jquery-1.6.2.min.js'}
+  %body
+    %div.navbar.navbar-fixed-top
+      %div.navbar-inner
+        %div.container
+          %a.btn.btn-navbar{'data-toggle' => 'collapse', 'data-target' => '.nav-collapse'}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand{:href => '/'}
+            %img{:src => '/blogbites-logo-73x73.jpg', :height => '20px', :width => '20px'}
+            hawt
+          %div.nav-collapse
+            %ul.nav
+              -@nav_links.each do |nav_link|
+                -if nav_link.active?
+                  %li.active
+                    %a{:href => nav_link.path}=nav_link.title
+                -else
+                  %li
+                    %a{:href => nav_link.path}=nav_link.title
+            %ul.nav.pull-right
+              -if current_user
+                %li
+                  %a{:href => '/profile'}=current_user.display_name
+                %li
+                  %a{:href => '/logout'} Logout
+              -else
+                %li
+                  %a{:href => '/login'} Login
+
+    %div.container
+      =yield
+      %footer.footer
+        %div.span4
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
