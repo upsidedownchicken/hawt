@@ -13,7 +13,7 @@ module Hawt
 
     def session_data(opts = {})
       {'rack.session' => {
-        'current_user' => stub(:id => '12345', :display_name => 'Test User'),
+        'current_user' => stub(:id => '12345', :nick => 'testuser'),
       }.merge(opts)}
     end
 
