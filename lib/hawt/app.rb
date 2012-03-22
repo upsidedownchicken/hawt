@@ -25,5 +25,10 @@ module Hawt
     get '/' do
       haml :index
     end
+
+    get '/logout' do
+      session.clear
+      redirect '/'
+    end
   end
 end

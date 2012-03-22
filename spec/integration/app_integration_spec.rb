@@ -35,5 +35,17 @@ module Hawt
         response.body.should match(/Logout/)
       end
     end
+
+    context 'when logging out' do
+      let(:response) { get '/logout' }
+
+      it 'returns 302' do
+        response.status.should == 302
+      end
+
+      it 'redirects to /' do
+        response.location.should == 'http://example.org/'
+      end
+    end
   end
 end
