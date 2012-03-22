@@ -1,37 +1,41 @@
 %div.hero-unit
   %h1 hawt
   %p You like to watch, don't you?
+  -if !current_user
+    %a.btn.btn-primary{:href => '/login'}
+      Login with GitHub to see your watched repositories
 
-%h2 Watched Repositories
-%div.items
-  %h4
-    %a{:href => '#'} gma/nesta
-    A lightweight CMS, implemented in Sinatra.
-  %ul
-    %li
-      %a{:href => '#'} 8ba2e29fbc
-      6 hours ago @gma Bumped copyright statement to 2012.
+-if current_user
+  %h2 Watched Repositories
+  %div.items
+    %h4
+      %a{:href => '#'} gma/nesta
+      A lightweight CMS, implemented in Sinatra.
+    %ul
+      %li
+        %a{:href => '#'} 8ba2e29fbc
+        6 hours ago @gma Bumped copyright statement to 2012.
 
-  %h4
-    %a{:href => '#'} github/hubot
-    A customizable, kegerator-powered life embetterment robot.
-  %ul
-    %li
-      %a{:href => '#'} 2ab8b1896f
-      6 hours ago @tombell Oops, forgot to update dependency version
+    %h4
+      %a{:href => '#'} github/hubot
+      A customizable, kegerator-powered life embetterment robot.
+    %ul
+      %li
+        %a{:href => '#'} 2ab8b1896f
+        6 hours ago @tombell Oops, forgot to update dependency version
 
-  %h4
-    %a{:href => '#'} cinchrb/cinch
-    The IRC Bot Building Framework
-  %ul
-    %li
-      %a{:href => '#'} 11e273acf2
-      7 hours ago @dominikh use links relative to basedir
+    %h4
+      %a{:href => '#'} cinchrb/cinch
+      The IRC Bot Building Framework
+    %ul
+      %li
+        %a{:href => '#'} 11e273acf2
+        7 hours ago @dominikh use links relative to basedir
 
-  %h4
-    %a{:href => '#'} RubyMoney/money
-    Library for dealing with money and currency conversion
-  %ul
-    %li
-      %a{:href => '#'} be79c346b0
-      10 hours ago @alup Fix a typo in README
+    %h4
+      %a{:href => '#'} RubyMoney/money
+      Library for dealing with money and currency conversion
+    %ul
+      %li
+        %a{:href => '#'} be79c346b0
+        10 hours ago @alup Fix a typo in README

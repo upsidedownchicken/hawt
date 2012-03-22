@@ -3,6 +3,8 @@ require 'ostruct'
 
 module Hawt
   class App < Sinatra::Base
+    use Rack::Session::Cookie
+
     configure do
       set :root, File.expand_path('../../..', __FILE__)
       set :method_override, true
@@ -10,6 +12,7 @@ module Hawt
 
     helpers do
       def current_user
+        session['current_user']
       end
     end
 
