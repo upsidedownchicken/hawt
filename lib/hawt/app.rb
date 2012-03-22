@@ -26,6 +26,10 @@ module Hawt
       haml :index
     end
 
+    get '/login' do
+      redirect '/auth/github?origin=/'
+    end
+
     get '/logout' do
       session.clear
       redirect '/'

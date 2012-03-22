@@ -28,6 +28,14 @@ module Hawt
       end
     end
 
+    context '/login' do
+      it 'redirects to /auth/github?origin=/' do
+        get '/login'
+        last_response.status.should == 302
+        last_response.location.should == 'http://example.org/auth/github?origin=/'
+      end
+    end
+
     context 'when logged in' do
       let(:response) { get '/', {}, session_data }
       it { response.should be_ok }
