@@ -34,18 +34,10 @@
           %a.brand{:href => '/'}
             hawt
           %div.nav-collapse
-            %ul.nav
-              -@nav_links.each do |nav_link|
-                -if nav_link.active?
-                  %li.active
-                    %a{:href => nav_link.path}=nav_link.title
-                -else
-                  %li
-                    %a{:href => nav_link.path}=nav_link.title
             %ul.nav.pull-right
               -if current_user
                 %li
-                  %a{:href => '/profile'}=current_user.display_name
+                  %a{:href => '/profile'}=current_user.nick
                 %li
                   %a{:href => '/logout'} Logout
               -else
