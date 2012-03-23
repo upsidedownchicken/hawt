@@ -2,6 +2,17 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'rack/test'
 require 'hawt/app'
+require 'webmock/rspec'
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  c.hook_into :webmock
+end
+
+RSpec.configure do |c|
+  c.extend VCR::RSpec::Macros
+end
 
 module Hawt
   describe 'hawt app' do
@@ -13,7 +24,7 @@ module Hawt
 
     def session_data(opts = {})
       {'rack.session' => {
-        'current_user' => stub(:id => '12345', :nick => 'testuser'),
+        'current_user' => stub(:id => '12345', :nick => 'testuser', :token => 'foo'),
       }.merge(opts)}
     end
 
@@ -37,6 +48,7 @@ module Hawt
     end
 
     context 'when logged in' do
+      use_vcr_cassette 'github_watched_repos', :match_requests_on => [:host, :path]
       let(:response) { get '/', {}, session_data }
       it { response.should be_ok }
       it 'has logout link' do

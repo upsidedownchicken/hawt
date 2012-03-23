@@ -5,7 +5,7 @@ gem 'haml'
 gem 'coffee-script'
 gem 'coffee-filter'
 gem 'foreman'
-gem 'octokit'
+gem 'github_api'
 gem 'omniauth'
 gem 'omniauth-github'
 

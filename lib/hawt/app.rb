@@ -1,9 +1,10 @@
 require 'sinatra'
 require 'ostruct'
 require 'omniauth-github'
+require 'github_api'
 
 module Hawt
-  class User < Struct.new(:id, :nick)
+  class User < Struct.new(:id, :nick, :token)
   end
 
   class App < Sinatra::Base
@@ -31,12 +32,17 @@ module Hawt
     end
 
     get '/' do
+      if current_user
+        @page = params[:page].to_i || 1
+        gh = Github.new(:oauth_token => current_user.token)
+        @watched = gh.repos.watched :page => @page
+      end
       haml :index
     end
 
     get '/auth/github/callback' do
       auth = request.env['omniauth.auth']
-      session[:current_user] = User.new auth[:uid], auth[:info][:nickname]
+      session[:current_user] = User.new auth[:uid], auth[:info][:nickname], auth[:credentials][:token]
       redirect request.env['omniauth.origin'] || '/'
     end
 
